@@ -1,0 +1,60 @@
+#addons:
+db: null
+mk:
+   templates: null
+   files: null
+software:
+   ae: null
+   houdini: null
+   maya: null
+   pr: null
+   ps: null
+   ftrack: null
+aud_vid_img:
+   abc: null
+   anim: null
+   jpg: null
+   mb: null
+   mp4: null
+   obj: null
+3D_asset_types:
+   ANI: null
+   ASS: null
+   CAM: null
+   LDV: null
+   LIG: null
+   MOD: null
+   REN: null
+   RIG: null
+   SET: null
+   set:
+       LOC: null
+       LAY: null
+   SHD: null
+   SIM: null
+   TEX: null
+   TRK: null
+2D_asset_types:
+   CMP: null
+   MSK: null
+
+#----extracted from public branch ------#
+#----character
+#  chr:
+#    - chr_type:
+#        - chr_type:
+#        - chr_prop:
+
+# ---episode and _local folder also from publish branch
+#  ep00:
+#    - 000-0001: null
+#    - _local: null
+# ---_global also from publish branch
+#  _global:
+
+#----end of public branch ------#
+
+
+#----extracted from .in branch ------#
+
+#----end of in branch ------#
