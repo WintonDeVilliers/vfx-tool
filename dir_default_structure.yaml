@@ -3,10 +3,6 @@
   db:
   mk:
   software:
-.publish:
-  chr:
-  ep:
-  _global:
 in:
   _temp:
   production:

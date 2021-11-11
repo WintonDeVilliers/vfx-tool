@@ -61,21 +61,26 @@ def add_to_given_directory():
         if user_addon_selection != value:
             print(user_addon_selection)
             print(value[user_addon_selection])
-        # print(key, value)
-        # print(show_addons.keys())
 
-    # for i in show_addons:
-    #     print(i)
-    #     for j, v in show_addons[i]:
-    #         print(j)
-        # print(os.getcwd())
-        # os.mkdir(i)
+
+
+def edit_existing_directory():
+    os.chdir(main_root)
+    user_search_project = input("What project do you want to edit: ")
+    selected_proj_path = main_root + os.sep + user_search_project
+    os.chdir(selected_proj_path)
+    # at this point we are in the dir and have sight of the base folders
+    for path, sub_dirs, files in os.walk(selected_proj_path):
+        # if path in sub_dirs:
+        for i in sub_dirs:
+            print(path)
+            # main_root + os.sep + user_search_project + os.sep + folder_to_edit
+
 
 
 # ------------------------------------------ Function calls --------------------------------------------------------
-
-
-make_default_dirs()
+# make_default_dirs()
+# edit_existing_directory()
 # add_to_given_directory()
 # add_to_subdir()
 # yamldirs.yamldirs_cmd.reconstitute_directory("dir_default_structure.yaml")
