@@ -14,11 +14,11 @@ main_root = os.getenv("MAIN_ROOT")
 top_layer_dir = os.getenv("TOP_LAYER_DIR")
 addons = os.getenv("ADDONS")
 
+"""LAYER 1
+will activate first two blocks """
+
 
 # will gen the default top-level directory in our main_root folder
-"""LAYER 1"""
-
-
 def make_default_dirs(default=f"Default{datetime.timestamp(datetime.now())}"):
     project_name_leaf = input(f"Project Name or press ENTER to use {default}")  # this must be a radar selection
     input_check = re.search(r'([a-zA-Z]|[0-9])', project_name_leaf)
@@ -63,6 +63,9 @@ def add_to_given_directory():
             print(value[user_addon_selection])
 
 
+"""Layer2
+will activate blocks of dirs"""
+
 
 def edit_existing_directory():
     os.chdir(main_root)
@@ -73,14 +76,18 @@ def edit_existing_directory():
     for path, sub_dirs, files in os.walk(selected_proj_path):
         # if path in sub_dirs:
         for i in sub_dirs:
-            print(path)
+            if i.endswith("mk"):
+                os.chdir(path + os.sep + 'mk')
+                print(os.getcwd())
+                yamldirs.yamldirs_cmd.reconstitute_directory("C:\\Users\\CHOCO-012\\PycharmProjects\\vfx_dir_tool\\mk_construct.yaml")
+
             # main_root + os.sep + user_search_project + os.sep + folder_to_edit
 
 
-
+edit_existing_directory()
 # ------------------------------------------ Function calls --------------------------------------------------------
 # make_default_dirs()
-# edit_existing_directory()
+
 # add_to_given_directory()
 # add_to_subdir()
 # yamldirs.yamldirs_cmd.reconstitute_directory("dir_default_structure.yaml")
