@@ -1,6 +1,35 @@
 #000default:
 .master_cfg:
+  db:
+  mk:
+  software:
 .publish:
+  chr:
+  ep:
+  _global:
 in:
+  _temp:
+  production:
+  audio:
+  2d:
+  3d:
+  references:
+  shoot_data:
 out:
+  _approvals:
+  _data_exchange:
+  _finals:
 work:
+  _global:
+  _assets:
+  TVC or FLM:
+  shots:
+
+
+
+#"""" we can make a file for each connstruct ./.
+#  .then..becuz we have yamldirs...we can cd to the correct path and make dir using yamildirs
+#
+#  use softe=ware for first example...the user will say ." i want to add software to p[roject .
+#  ..we will find all software flags in the tree and use the related/relevant .yaml-file-isolated construct to mkdir
+#  """"

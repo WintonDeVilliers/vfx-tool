@@ -10,11 +10,13 @@ main_root = os.getenv("MAIN_ROOT")
 top_layer_dir = os.getenv("TOP_LAYER_DIR")
 addons = os.getenv("ADDONS")
 
+
 # will gen the top-level dir structure
 def read_yaml_into_program():
     with open(top_layer_dir, 'r+') as new_file:
         dict_version_of_default = yaml.safe_load(new_file)
-        return dict_version_of_default
+        real_dict = dict(dict_version_of_default)
+        return real_dict
 
 
 # we currently dumping to yaml file dir_default_structure.yaml in order to use dirs using yamldirs.cmd
@@ -32,7 +34,8 @@ def write_to_json_file(mutated_json_data):
 def read_addons_into_program():
     with open(addons, 'r+') as new_file:
         dict_version_of_default = yaml.safe_load(new_file)
-        return dict_version_of_default
+        real_dict = dict(dict_version_of_default)
+        return real_dict
 
 
 
