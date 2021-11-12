@@ -24,8 +24,8 @@ work:
 
 
 #"""" we can make a file for each connstruct ./.
-#  .then..becuz we have yamldirs...we can cd to the correct path and make dir using yamildirs
+#  .then..because we have yamldirs...we can cd to the correct path and make dir using yamildirs
 #
-#  use softe=ware for first example...the user will say ." i want to add software to p[roject .
+#  use software for first example...the user will say ." i want to add software to project .
 #  ..we will find all software flags in the tree and use the related/relevant .yaml-file-isolated construct to mkdir
 #  """"

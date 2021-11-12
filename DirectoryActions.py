@@ -41,8 +41,8 @@ will activate first two blocks """
 
 
 # will gen the default top-level directory in our main_root folder
-def make_default_dirs(project_name_leaf, default=f"Default{datetime.timestamp(datetime.now())}"):
-    # project_name_leaf = input(f"Project Name or press ENTER to use {default}")  # this must be a radar selection
+def make_default_dirs(default=f"Default{datetime.timestamp(datetime.now())}"):
+    project_name_leaf = input(f"Project Name or press ENTER to use {default} :")  # this must be a radar selection
     input_check = re.search(r'([a-zA-Z]|[0-9])', project_name_leaf)
 
     if input_check is None:
@@ -132,7 +132,8 @@ def edit_existing_directory(user_search_project, master_cfg=None, in_folder=None
     #             yamldirs.yamldirs_cmd.reconstitute_directory(mk_construct)
 
 
-edit_existing_directory("1234", "master_cfg")
+# edit_existing_directory("new project", "master_cfg")
+make_default_dirs()
 # ------------------------------------------ Function calls --------------------------------------------------------
 # make_default_dirs()
 
