@@ -1,0 +1,16 @@
+.sub_config:
+  software:
+_local:
+  shared:
+  ae:
+  premiere:
+  blender:
+  houdini:
+  maya:
+  nuke:
+  pftrack:
+  ps:
+  resolve:
+  unreal:
+90sec:
+  sh0000:
