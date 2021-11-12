@@ -36,7 +36,7 @@ TVC_or_FLM_construct = os.getenv("TVC_OR_FLM")
 
 
 
-"""LAYER 1
+"""LAYER 1 & 2
 will activate first two blocks """
 
 
@@ -44,32 +44,38 @@ will activate first two blocks """
 def make_default_dirs(project_name_leaf, default=f"Default{datetime.timestamp(datetime.now())}"):
     # project_name_leaf = input(f"Project Name or press ENTER to use {default}")  # this must be a radar selection
     input_check = re.search(r'([a-zA-Z]|[0-9])', project_name_leaf)
+
     if input_check is None:
+
         project_name_leaf = default
+
     os.chdir(main_root)
+
     os.mkdir(project_name_leaf)
+
     os.chdir(project_name_leaf)
+
     yamldirs.yamldirs_cmd.reconstitute_directory(top_layer_dir)
 
 
-def add_to_given_directory():
-    # os.chdir(main_root)
-    #
-    # print(f"Projects to select from : {os.listdir(main_root)}")
-    #
-    # user_search_project = input("What project do you want to edit: ")
-    #
-    # selected_proj_path = main_root + os.sep + user_search_project
-    #
-    # os.chdir(selected_proj_path)
-    #
-    # print(f"List of Directory/Folder options : {os.listdir()}")
-    #
-    # user_subdir_search = input("What subdir do you wish to edit: ")
-    #
-    # selected_subdir_path = selected_proj_path + os.sep + user_subdir_search
-    #
-    # os.chdir(selected_subdir_path)
+"""def add_to_given_directory():
+    os.chdir(main_root)
+
+    print(f"Projects to select from : {os.listdir(main_root)}")
+
+    user_search_project = input("What project do you want to edit: ")
+
+    selected_proj_path = main_root + os.sep + user_search_project
+
+    os.chdir(selected_proj_path)
+
+    print(f"List of Directory/Folder options : {os.listdir()}")
+
+    user_subdir_search = input("What subdir do you wish to edit: ")
+
+    selected_subdir_path = selected_proj_path + os.sep + user_subdir_search
+
+    os.chdir(selected_subdir_path)
 
     show_addons = read_addons_into_program()
 
@@ -82,32 +88,51 @@ def add_to_given_directory():
     for key, value in show_addons.items():
         if user_addon_selection != value:
             print(user_addon_selection)
-            print(value[user_addon_selection])
+            print(value[user_addon_selection])"""
 
 
-"""Layer2
-will activate blocks of dirs
-we will try positional args, with the view changing it at next refactor to accommodate **kwargs"""
+"""Layer 3
+will activate blocks of dirs we will try positional args, 
+with the view changing it at next refactor to accommodate **kwargs"""
 
 
-def edit_existing_directory(user_search_project, *args):
+def edit_existing_directory(user_search_project, master_cfg=None, in_folder=None, out_folder=None, work=None):
     os.chdir(main_root)
     # user_search_project = input("What project do you want to edit: ")
     selected_proj_path = main_root + os.sep + user_search_project
     os.chdir(selected_proj_path)
     # at this point we are in the dir and have sight of the base folders
-    for path, sub_dirs, files in os.walk(selected_proj_path):
-        # if path in sub_dirs:
-        for i in sub_dirs:
-            if i.endswith("mk"):
-                os.chdir(path + os.sep + "mk")
-                print(os.getcwd())
-                yamldirs.yamldirs_cmd.reconstitute_directory(mk_construct)
+    # here want to create an activation switch for the Layer 2 Directories...activating them block by block or all at once
+    if master_cfg is not None:
+        for path, sub_dirs, files in os.walk(selected_proj_path):
+            for i in sub_dirs:
+                if i.endswith("mk"):
+                    os.chdir(path + os.sep + "mk")
+                    yamldirs.yamldirs_cmd.reconstitute_directory(mk_construct)
+                if i.endswith("software"):
+                    os.chdir(path + os.sep + "software")
+                    yamldirs.yamldirs_cmd.reconstitute_directory(software_construct)
+    #     # we want to cd to dir and mkdir
+    #     for path, sub_dirs, files in os.walk(selected_proj_path):
+    #     pass
+    # elif args == "in":
+    #     pass
+    # elif args == "out":
+    #     pass
+    # elif args == "work":
+    #     pass
+    # else:
+    #     pass
+    # for path, sub_dirs, files in os.walk(selected_proj_path):
+    #     # if path in sub_dirs:
+    #     for i in sub_dirs:
+    #         if i.endswith("mk"):
+    #             os.chdir(path + os.sep + "mk")
+    #             print(os.getcwd())
+    #             yamldirs.yamldirs_cmd.reconstitute_directory(mk_construct)
 
-            # main_root + os.sep + user_search_project + os.sep + folder_to_edit
 
-
-# edit_existing_directory()
+edit_existing_directory("1234", "master_cfg")
 # ------------------------------------------ Function calls --------------------------------------------------------
 # make_default_dirs()
 
