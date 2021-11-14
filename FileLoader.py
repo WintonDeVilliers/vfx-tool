@@ -7,13 +7,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 main_root = os.getenv("MAIN_ROOT")
-top_layer_dir = os.getenv("TOP_LAYER_DIR")
+dir_default_structure = os.getenv("dir_default_structure")
 addons = os.getenv("ADDONS")
 
 
 # will gen the top-level dir structure
 def read_yaml_into_program():
-    with open(top_layer_dir, 'r+') as new_file:
+    with open(dir_default_structure, 'r+') as new_file:
         dict_version_of_default = yaml.safe_load(new_file)
         real_dict = dict(dict_version_of_default)
         return real_dict
@@ -21,7 +21,7 @@ def read_yaml_into_program():
 
 # we currently dumping to yaml file dir_default_structure.yaml in order to use dirs using yamldirs.cmd
 def write_json_to_yaml(json_dict):
-    with open(top_layer_dir, 'w') as yam_file:
+    with open(dir_default_structure, 'w') as yam_file:
         yaml.dump(json_dict, yam_file)
 
 

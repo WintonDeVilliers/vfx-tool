@@ -4,36 +4,36 @@ import re
 from datetime import datetime
 
 import yamldirs.yamldirs_cmd
-# from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 from FileLoader import *
 
+
+# load_dotenv("/Users/winstondevilliers/Winton_devWorx/vfx_dir_tool/.env")
 # Path variables/ env variables
-load_dotenv()
 main_root = os.getenv("MAIN_ROOT")
-top_layer_dir = os.getenv("TOP_LAYER_DIR")
+dir_default_structure = os.getenv("dir_default_structure")
 addons = os.getenv("ADDONS")
 # continue env vars
-mk_construct = os.getenv("MK")
+mk_construct = os.getenv("mk_construct")
 software_construct = os.getenv("SOFTWARE")
 """if in folder"""
 # temp_construct = no path set
-pre_production_construct = os.getenv("PRE_PRODUCTION")
+pre_production_construct = os.getenv("pre_production_construct")
 # audio_construct = no path set
-_2d_construct = os.getenv("_2D")
-_3d_construct = os.getenv("_3D")
+_2d_construct = os.getenv("_2d_construct")
+_3d_construct = os.getenv("_3d_construct")
 # references_construct = no path set
 shoot_data_construct = os.getenv("SHOOT_DATA")
 """ if out folder"""
-_approvals_construct = os.getenv("_APPROVALS")
-_data_exchange_construct = os.getenv("_DATA_EXCHANGE")
-_finals_construct = os.getenv("_FINALS")
+_approvals_construct = os.getenv("_approvals_construct")
+_data_exchange_construct = os.getenv("_data_exchange_construct")
+_finals_construct = os.getenv("_finals_construct")
 """ if work folder"""
 _global_construct = os.getenv("_GLOBAL")
 assets_construct = os.getenv("ASSETS")
 TVC_or_FLM_construct = os.getenv("TVC_OR_FLM")
 # shots_construct = path not set
-
 
 
 """LAYER 1 & 2
@@ -55,7 +55,7 @@ def make_default_dirs(default=f"Default{datetime.timestamp(datetime.now())}"):
 
     os.chdir(project_name_leaf)
 
-    yamldirs.yamldirs_cmd.reconstitute_directory(top_layer_dir)
+    yamldirs.yamldirs_cmd.reconstitute_directory(dir_default_structure)
 
 
 """def add_to_given_directory():
@@ -96,7 +96,7 @@ will activate blocks of dirs we will try positional args,
 with the view changing it at next refactor to accommodate **kwargs"""
 
 
-def edit_existing_directory(user_search_project, master_cfg=None, in_folder=None, out_folder=None, work=None):
+def edit_existing_directory(user_search_project, master_cfg=None):
     os.chdir(main_root)
     # user_search_project = input("What project do you want to edit: ")
     selected_proj_path = main_root + os.sep + user_search_project
