@@ -1,7 +1,8 @@
 import json
 import os
 import yaml
-
+import yamldirs
+import yamldirs.yamldirs_cmd
 from dotenv import load_dotenv
 
 
@@ -20,9 +21,11 @@ def read_yaml_into_program():
 
 
 # we currently dumping to yaml file dir_default_structure.yaml in order to use dirs using yamldirs.cmd
-def write_json_to_yaml(json_dict):
-    with open(dir_default_structure, 'w') as yam_file:
-        yaml.dump(json_dict, yam_file)
+def write_json_to_yaml():
+    with open("/Users/winstondevilliers/Winton_devWorx/vfx_dir_tool/vfx-tool/main.yaml", 'w') as yam_file:
+        data = yamldirs.yamldirs_cmd.directories2yaml("/Users/winstondevilliers/RootO/Default1636918899.929845")
+        print(data)
+        yaml.dump(data, yam_file)
 
 
 # we write the changes made by functions/methods to json file dir_yaml_to.json

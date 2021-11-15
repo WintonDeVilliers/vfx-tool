@@ -1,11 +1,14 @@
 import json
 import os
 import re
+import sys
 from datetime import datetime
 
 import yamldirs.yamldirs_cmd
 
 from dotenv import load_dotenv
+from ruamel.yaml import YAML
+
 from FileLoader import *
 
 
@@ -56,6 +59,8 @@ def make_default_dirs(default=f"Default{datetime.timestamp(datetime.now())}"):
     os.chdir(project_name_leaf)
 
     yamldirs.yamldirs_cmd.reconstitute_directory(dir_default_structure)
+
+
 
 
 """def add_to_given_directory():
@@ -132,8 +137,14 @@ def edit_existing_directory(user_search_project, master_cfg=None):
     #             yamldirs.yamldirs_cmd.reconstitute_directory(mk_construct)
 
 
+
+
 # edit_existing_directory("new project", "master_cfg")
-make_default_dirs()
+# make_default_dirs()
+print(os.getcwd())
+# directories_2_yaml("/Users/winstondevilliers/RootO/Default1636918899.929845")
+# write_json_to_yaml()
+print(os.getcwd())
 # ------------------------------------------ Function calls --------------------------------------------------------
 # make_default_dirs()
 
