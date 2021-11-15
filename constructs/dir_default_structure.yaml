@@ -1,8 +1,12 @@
 #000default:
-.master_cfg:
+master_cfg:
   db:
   mk:
   software:
+publish:
+  chr:
+  ep00:
+  global:
 in:
   _temp:
   production:
