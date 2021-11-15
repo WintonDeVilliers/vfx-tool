@@ -19,7 +19,11 @@ dir_default_structure = os.getenv("dir_default_structure")
 addons = os.getenv("ADDONS")
 # continue env vars
 mk_construct = os.getenv("mk_construct")
-software_construct = os.getenv("SOFTWARE")
+software_construct = os.getenv("software_construct")
+"""if publish folder"""
+chr_construct = os.getenv("chr_construct")
+ep_construct = os.getenv("ep_construct")
+_p_global_construct = os.getenv("_p_global_construct")
 """if in folder"""
 # temp_construct = no path set
 pre_production_construct = os.getenv("pre_production_construct")
@@ -33,10 +37,10 @@ _approvals_construct = os.getenv("_approvals_construct")
 _data_exchange_construct = os.getenv("_data_exchange_construct")
 _finals_construct = os.getenv("_finals_construct")
 """ if work folder"""
-_global_construct = os.getenv("_GLOBAL")
-assets_construct = os.getenv("ASSETS")
-TVC_or_FLM_construct = os.getenv("TVC_OR_FLM")
-# shots_construct = path not set
+_w_global_construct = os.getenv("_w_global_construct")
+_assets_construct = os.getenv("_assets_construct")
+tvc_or_flm_construct = os.getenv("tvc_or_flm_construct")
+# 101 | shots_construct = path not set
 
 
 """LAYER 1 & 2
@@ -97,57 +101,114 @@ def make_default_dirs(default=f"Default{datetime.timestamp(datetime.now())}"):
 
 
 """Layer 3
-will activate blocks of dirs we will try positional args, 
-with the view changing it at next refactor to accommodate **kwargs"""
+will populate the blocks in blue ie populate the main sub_dirs """
 
 
-def edit_existing_directory(user_search_project, master_cfg=None):
-    os.chdir(main_root)
-    # user_search_project = input("What project do you want to edit: ")
-    selected_proj_path = main_root + os.sep + user_search_project
-    os.chdir(selected_proj_path)
-    # at this point we are in the dir and have sight of the base folders
-    # here want to create an activation switch for the Layer 2 Directories...activating them block by block or all at once
-    if master_cfg is not None:
+def populate_subdir_master_cfg(user_search_project):
+    selected_proj_path = main_root + os.sep + user_search_project + os.sep + "master_cfg"
+    # os.chdir(selected_proj_path)
+    try:
         for path, sub_dirs, files in os.walk(selected_proj_path):
             for i in sub_dirs:
                 if i.endswith("mk"):
-                    os.chdir(path + os.sep + "mk")
+                    os.chdir(path + os.sep + i)
                     yamldirs.yamldirs_cmd.reconstitute_directory(mk_construct)
                 if i.endswith("software"):
-                    os.chdir(path + os.sep + "software")
+                    os.chdir(path + os.sep + i)
                     yamldirs.yamldirs_cmd.reconstitute_directory(software_construct)
-    #     # we want to cd to dir and mkdir
-    #     for path, sub_dirs, files in os.walk(selected_proj_path):
-    #     pass
-    # elif args == "in":
-    #     pass
-    # elif args == "out":
-    #     pass
-    # elif args == "work":
-    #     pass
-    # else:
-    #     pass
-    # for path, sub_dirs, files in os.walk(selected_proj_path):
-    #     # if path in sub_dirs:
-    #     for i in sub_dirs:
-    #         if i.endswith("mk"):
-    #             os.chdir(path + os.sep + "mk")
-    #             print(os.getcwd())
-    #             yamldirs.yamldirs_cmd.reconstitute_directory(mk_construct)
+    except FileExistsError as e:
+        print(e.__class__, "Subdir already Exists")
 
 
+def populate_subdir_publish(user_search_project):
+    selected_proj_path = main_root + os.sep + user_search_project + os.sep + "publish"
+    os.chdir(selected_proj_path)
+    try:
+        for path, sub_dirs, files in os.walk(selected_proj_path):
+            for i in sub_dirs:
+                if i.endswith("_chr"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(chr_construct)
+                if i.endswith("ep00"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(ep_construct)
+                if i.endswith("_global"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(_p_global_construct)
+
+    except FileExistsError as e:
+        print(e.__class__, "Subdir already Exists")
 
 
+def populate_subdir_in(user_search_project):
+    selected_proj_path = main_root + os.sep + user_search_project + os.sep + "in"
+    os.chdir(selected_proj_path)
+    try:
+        for path, sub_dirs, files in os.walk(selected_proj_path):
+            for i in sub_dirs:
+                if i.endswith("pre-production"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(pre_production_construct)
+                if i.endswith("2d"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(_2d_construct)
+                if i.endswith("3d"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(_3d_construct)
+                if i.endswith("shoot_data"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(shoot_data_construct)
+
+    except FileExistsError as e:
+        print(e.__class__, "Subdir already Exists")
+
+
+def populate_subdir_out(user_search_project):
+    selected_proj_path = main_root + os.sep + user_search_project + os.sep + "out"
+    os.chdir(selected_proj_path)
+    try:
+        for path, sub_dirs, files in os.walk(selected_proj_path):
+            for i in sub_dirs:
+                if i.endswith("_approvals"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(_approvals_construct)
+                if i.endswith("_data_exchange"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(_data_exchange_construct)
+                if i.endswith("_finals"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(_finals_construct)
+
+    except FileExistsError as e:
+        print(e.__class__, "Subdir already Exists")
+
+
+def populate_subdir_work(user_search_project):
+    selected_proj_path = main_root + os.sep + user_search_project + os.sep + "work"
+    os.chdir(selected_proj_path)
+    try:
+        for path, sub_dirs, files in os.walk(selected_proj_path):
+            for i in sub_dirs:
+                if i.endswith("_w_global"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(_w_global_construct)
+                if i.endswith("_assets"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(_assets_construct)
+                if i.endswith("tvc or flm"):
+                    os.chdir(path + os.sep + i)
+                    yamldirs.yamldirs_cmd.reconstitute_directory(tvc_or_flm_construct)
+
+    except FileExistsError as e:
+        print(e.__class__, "Subdir already Exists")
+
+
+# ------------------------------------------ Function calls --------------------------------------------------------
 # edit_existing_directory("new project", "master_cfg")
 # make_default_dirs()
 print(os.getcwd())
 # directories_2_yaml("/Users/winstondevilliers/RootO/Default1636918899.929845")
 # write_json_to_yaml()
+# populate_subdir_master_cfg("Default1636918899.929845")
+populate_subdir_publish("Default1636918899.929845")
 print(os.getcwd())
-# ------------------------------------------ Function calls --------------------------------------------------------
-# make_default_dirs()
-
-# add_to_given_directory()
-# add_to_subdir()
-# yamldirs.yamldirs_cmd.reconstitute_directory("dir_default_structure.yaml")

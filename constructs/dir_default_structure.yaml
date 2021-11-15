@@ -4,7 +4,7 @@ master_cfg:
   mk:
   software:
 publish:
-  chr:
+  _chr:
   ep00:
   global:
 in:
@@ -24,12 +24,3 @@ work:
   _assets:
   TVC or FLM:
   shots:
-
-
-
-#"""" we can make a file for each connstruct ./.
-#  .then..because we have yamldirs...we can cd to the correct path and make dir using yamildirs
-#
-#  use software for first example...the user will say ." i want to add software to project .
-#  ..we will find all software flags in the tree and use the related/relevant .yaml-file-isolated construct to mkdir
-#  """"
